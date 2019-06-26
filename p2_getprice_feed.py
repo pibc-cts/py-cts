@@ -18,7 +18,7 @@ account_name = 'account'
 password = 'unlock_password'
 
 #limit_order ='50'
-limit_order =input("请输入取市场单数量，过大会出错：\n")
+limit_order =input("cin limit_order：\n")
 
 fax_price =10
 one_year = 3600 * 24 * 365
@@ -40,7 +40,7 @@ sell_price_standard = 0
 order_book = market.get_order_book('CNY', 'CTS', limit_order, wallet_port)
 #print(order_book)
 cny_settlement_price = market.get_cny_settlement_price(wallet_port)
-print("目前喂价:",cny_settlement_price)
+print("feed_price_now:",cny_settlement_price)
 #######maybe not used,but keep it#####
 if order_book['bids'] == [] and order_book['asks'] == []:
 	cny_settlement_price = market.get_cny_settlement_price(wallet_port)
@@ -92,7 +92,7 @@ for i in range(0, len(order_book['bids'])):
 	#print(price)
 	#fpp=bpg[0]*fax_price
 	if price < bpg[0]*(100-fax_price)/100:
-		print("买单价位已超出最高价的",(100-fax_price)," %")
+		print("buy over the high",(100-fax_price)," %")
 		bpg.pop()
 		bqg.pop()
 		bb.pop()
@@ -108,16 +108,16 @@ for i in range(0, len(order_book['asks'])):
 	ask_quote +=float(order_book['asks'][i]['quote'])
 	sqg.append(ask_quote)
 	if price>spg[0]*(100+fax_price)/100:
-		print("卖单价位已超出最低价的",(100+fax_price)," %")
+		print("sell over the low",(100+fax_price)," %")
 		spg.pop()
 		sqg.pop()
 		sb.pop()
 		break
 
-print("买单价队列:",bpg,"\n买单总数队列:",bqg,"\n买单总价位:",bb,"\n卖单价队列:",spg,"\n卖单总数队列:",sqg,"\n卖单总价位:",sb)
+print("price_buy:",bpg,"\nquote_buy:",bqg,"\nsum_buy:",bb,"\nprice_sell:",spg,"\nquote_sell:",sqg,"\nsum_sell:",sb)
 
 if bqg[-1] > sqg[-1] :
-	print("买单数量多过卖单，重新取买单数量")
+	print("quote_buy > quote_sell,request")
 	#bid_quote_1=0.0
 	#l_quote=0
 	for i in range(0, int(limit_order)):
@@ -128,14 +128,14 @@ if bqg[-1] > sqg[-1] :
 			if i ==0:
 					sum_bid_price=bpg[i]*sqg[-1]
 			else: sum_bid_price=bb[i-1]+bpg[i]*(sqg[-1]-bqg[i-1])
-			print("相同",sqg[-1],"数量下,","买单总价:",sum_bid_price,"卖单总价:",sb[-1])
+			print(sqg[-1],"CTS","sum_buy:",sum_bid_price,"sum_sell:",sb[-1])
 			cny_math_order=(sum_bid_price+sb[-1])/(sqg[-1]*2)
-			print("市场买卖取",fax_price,"%偏差后最小深度计算出来的CTS喂价:",cny_math_order)
+			print(cny_math_order)
 			break
 		
 		
 elif bqg[-1] < sqg[-1]:
-	print("卖单数量多过买单，重新取卖单数量")
+	print("quote_buy < quote_sell,request")
 	ask_quote_1=0.0
 	l_quote=0
 	for i in range(0, len(sqg)):
@@ -143,18 +143,18 @@ elif bqg[-1] < sqg[-1]:
 			if i ==0:
 				sum_ask_price=spg[i]*bqg[-1]
 			else: sum_ask_price=sb[i-1]+spg[i]*(bqg[-1]-sqg[i-1])
-			print("相同",sqg[-1],"数量下,","买单总价:",bb[-1],"卖单总价:",sum_ask_price)
+			print(sqg[-1],"CTS,","sum_buy:",bb[-1],"sum_sell:",sum_ask_price)
 			cny_math_order=(sb[-1]+sum_ask_price)/(bqg[-1]*2)
-			print("市场买卖取",fax_price,"%偏差后最小深度计算出来的CTS喂价:",cny_math_order)
+			print(cny_math_order)
 			break
 	
 else :
-	print("买卖单请求数量相等")
+	print("quote_buy==quote_sell")
 	cny_math_order=(sb[-1]+bb[-1])/(bqg[-1]*2)
 	print(cny_math_order)
 cny_math_order=round(cny_math_order,5)
 print(cny_math_order)
-feed_choice=input("请判断是否使用上方数值进行喂价.y/n\n")
+feed_choice=input("use the price to feed? y/n\n")
 if feed_choice == 'y':
 	publish_feedprice(account_name, cny_math_order, wallet_port)
 else:
