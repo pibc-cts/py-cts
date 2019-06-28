@@ -13,9 +13,11 @@ def publish_feedprice(account_name, feed_price, wallet_port):
 
 #################### parameter ##########################
 
-wallet_port = 'port'
-account_name = 'account'
+wallet_port = '8093'
+account_name = 'init3'
 password = 'unlock_password'
+passwdrd = getpass.getpass("enter your password of ",account_name,"： ")
+##### use getpass to hide the password#####
 
 #limit_order ='50'
 limit_order =input("cin limit_order：\n")
