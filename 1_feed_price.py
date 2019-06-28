@@ -12,13 +12,14 @@ def publish_feedprice(account_name, feed_price, wallet_port):
 # wallet port which cli_wallet opened  
 wallet_port = "8093"
 # feed price you want to feed
-f_f=input("请输入1CTS等同的CNY数量\n")
+f_f=input("1CTS=?CNY,cin\n")
 print(f_f)
 feed_price = float(f_f)
 print(feed_price)
 # account name which you publish your feed price
 account_name = "init3"
-password = "gg123123"
+password = "adsadf"
+passwdrd = getpass.getpass("enter your password of ",account_name,"： ")
 #######################################################
 
 account = client.Account(account_name, password, wallet_port)
