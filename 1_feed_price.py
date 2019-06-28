@@ -18,7 +18,7 @@ feed_price = float(f_f)
 print(feed_price)
 # account name which you publish your feed price
 account_name = "init3"
-password = "adsadf"
+password = "asadf"
 passwdrd = getpass.getpass("enter your password of ",account_name,"： ")
 #######################################################
 
