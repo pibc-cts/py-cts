@@ -1,1 +1,4 @@
 自开一档，不知道旧档为何不行
+有用的为 1_feed_price.py p2_getprice_feed.py p3_autogetprice_feed.py p4_autogetprice_averagefeed.py
+
+1为输入价位直接喂 P2 计算市场价，取4段价值 可选择性喂 P3 直接按50市场价喂 P4 50市场价与喂价平均 然后喂 Basic Utils of Citshares
