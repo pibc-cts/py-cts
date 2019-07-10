@@ -17,7 +17,7 @@ def publish_feedprice(account_name, feed_price, wallet_port):
 wallet_port = '8093'
 account_name = 'init3'
 password = ''
-passwdrd = getpass.getpass("enter your password ： ")
+password = getpass.getpass("enter your password ： ")
 ##### use getpass to hide the password#####
 
 #limit_order ='50'
