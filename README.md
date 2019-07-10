@@ -3,6 +3,9 @@
 原作者 地址 ： https://github.com/citshares/python-cts 
 GIT 系统命令不会用（不想更新出事）。只玩复制，上传，新开一档。
 
+有用的为 1_feed_price.py  p2_getprice_feed.py  p3_autogetprice_feed.py p4_autogetprice_averagefeed.py
+
+1为输入价位直接喂  P2 计算市场价，取4段价值 可选择性喂  P3 直接按50市场价喂 P4 50市场价与喂价平均 然后喂
 Basic Utils of Citshares
 
 1. In order to use this tool, please prepare the cli_wallet, and open one rpc port .
