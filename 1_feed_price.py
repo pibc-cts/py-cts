@@ -19,7 +19,7 @@ print(feed_price)
 # account name which you publish your feed price
 account_name = "init3"
 password = "asadf"
-passwdrd = getpass.getpass("enter your password of ",account_name,"： ")
+password = getpass.getpass("enter your password of ",account_name,"： ")
 #######################################################
 
 account = client.Account(account_name, password, wallet_port)
