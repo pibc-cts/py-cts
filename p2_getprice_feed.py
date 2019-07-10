@@ -2,6 +2,7 @@ import client
 import pdb
 import market
 import blockchain
+import getpass
 
 def publish_feedprice(account_name, feed_price, wallet_port):
         bts_amount = 100
@@ -15,8 +16,8 @@ def publish_feedprice(account_name, feed_price, wallet_port):
 
 wallet_port = '8093'
 account_name = 'init3'
-password = 'unlock_password'
-passwdrd = getpass.getpass("enter your password of ",account_name,"： ")
+password = ''
+passwdrd = getpass.getpass("enter your password ： ")
 ##### use getpass to hide the password#####
 
 #limit_order ='50'
@@ -80,6 +81,10 @@ sum_ask_price=0.0
 cny_math_order=0.0
 temp_b=0.0
 temp_s=0.0
+cny_math_1_25=0.0
+cny_math_2_50=0.0
+cny_math_3_75=0.0
+cny_interval=0.0
 
 for i in range(0, len(order_book['bids'])):
 	price = float(order_book['bids'][i]['price'])
@@ -155,19 +160,19 @@ else :
 	cny_math_order=(sb[-1]+bb[-1])/(bqg[-1]*2)
 	print("cny_math:",cny_math_order)
 cny_interval = cny_math_order - cny_settlement_price
-cny_math_1_0.25 = cny_math_order + cny_interval*0.25
-cny_math_2_0.5 = cny_math_order + cny_interval*0.5
-cny_math_3_0.75 = cny_math_order + cny_interval*0.75
-#cny_math_order=round(cny_math_order,5)
-print("1:",cny_math_1_0.25,"2:",cny_math_2_0.5,"3:",cny_math_3_0.75,"4:",cny_math_order)
+cny_math_1_25 = round((cny_math_order + cny_interval*0.25),5)
+cny_math_2_50 = round((cny_math_order + cny_interval*0.5),5)
+cny_math_3_75 = round((cny_math_order + cny_interval*0.75),5)
+cny_math_order=round(cny_math_order,5)
+print("1:",cny_math_1_25,"2:",cny_math_2_50,"3:",cny_math_3_75,"4:",cny_math_order)
 feed_choice=input("use the price to feed? 1 2 3 4 n \n")
 if feed_choice == '1':
-	publish_feedprice(account_name, cny_math_1_0.25, wallet_port)
-elif:feed_choice == '2':
-	publish_feedprice(account_name, cny_math_2_0.5, wallet_port)
-elif:feed_choice == '3':
-	publish_feedprice(account_name, cny_math_3_0.75, wallet_port)
-elif:feed_choice == '4':
+	publish_feedprice(account_name, cny_math_1_25, wallet_port)
+elif feed_choice == '2':
+	publish_feedprice(account_name, cny_math_2_50, wallet_port)
+elif feed_choice == '3':
+	publish_feedprice(account_name, cny_math_3_75, wallet_port)
+elif feed_choice == '4':
 	publish_feedprice(account_name, cny_math_order, wallet_port)
 else:
 	
