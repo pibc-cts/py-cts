@@ -1,5 +1,8 @@
 # python-cts
 
+原作者 地址 ： https://github.com/citshares/python-cts 
+GIT 系统命令不会用（不想更新出事）。只玩复制，上传，新开一档。
+
 Basic Utils of Citshares
 
 1. In order to use this tool, please prepare the cli_wallet, and open one rpc port .
