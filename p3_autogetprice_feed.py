@@ -144,7 +144,7 @@ elif bqg[-1] < sqg[-1]:
 				sum_ask_price=spg[i]*bqg[-1]
 			else: sum_ask_price=sb[i-1]+spg[i]*(bqg[-1]-sqg[i-1])
 			#print("相同",sqg[-1],"数量下,","买单总价:",bb[-1],"卖单总价:",sum_ask_price)
-			cny_math_order=(sb[-1]+sum_ask_price)/(bqg[-1]*2)
+			cny_math_order=(bb[-1]+sum_ask_price)/(bqg[-1]*2)
 			#print("市场买卖取",fax_price,"%偏差后最小深度计算出来的CTS喂价:",cny_math_order)
 			break
 	
