@@ -151,7 +151,7 @@ elif bqg[-1] < sqg[-1]:
 				sum_ask_price=spg[i]*bqg[-1]
 			else: sum_ask_price=sb[i-1]+spg[i]*(bqg[-1]-sqg[i-1])
 			print(bqg[-1],"CTS,","sum_buy:",bb[-1],"sum_sell:",sum_ask_price)
-			cny_math_order=(sb[-1]+sum_ask_price)/(bqg[-1]*2)
+			cny_math_order=(bb[-1]+sum_ask_price)/(bqg[-1]*2)
 			print(cny_math_order)
 			break
 	
