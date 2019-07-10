@@ -153,13 +153,24 @@ elif bqg[-1] < sqg[-1]:
 else :
 	print("quote_buy==quote_sell")
 	cny_math_order=(sb[-1]+bb[-1])/(bqg[-1]*2)
-	print(cny_math_order)
-cny_math_order=round(cny_math_order,5)
-print(cny_math_order)
-feed_choice=input("use the price to feed? y/n\n")
-if feed_choice == 'y':
+	print("cny_math:",cny_math_order)
+cny_interval = cny_math_order - cny_settlement_price
+cny_math_1_0.25 = cny_math_order + cny_interval*0.25
+cny_math_2_0.5 = cny_math_order + cny_interval*0.5
+cny_math_3_0.75 = cny_math_order + cny_interval*0.75
+#cny_math_order=round(cny_math_order,5)
+print("1:",cny_math_1_0.25,"2:",cny_math_2_0.5,"3:",cny_math_3_0.75,"4:",cny_math_order)
+feed_choice=input("use the price to feed? 1 2 3 4 n \n")
+if feed_choice == '1':
+	publish_feedprice(account_name, cny_math_1_0.25, wallet_port)
+elif:feed_choice == '2':
+	publish_feedprice(account_name, cny_math_2_0.5, wallet_port)
+elif:feed_choice == '3':
+	publish_feedprice(account_name, cny_math_3_0.75, wallet_port)
+elif:feed_choice == '4':
 	publish_feedprice(account_name, cny_math_order, wallet_port)
 else:
+	
 	exit(0)
 
 
